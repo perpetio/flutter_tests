@@ -16,6 +16,7 @@ class MockRepository extends Mock implements CatfactRepository {}
 
 void main() {
   late MockRepository mockRepository;
+  final CatFact catFact = CatFact(fact: 'mock test', length: 1);
 
   setUp(() {
     mockRepository = MockRepository();
@@ -24,7 +25,7 @@ void main() {
   void arrangeRepositoryRequestFor2Seconds() {
     when(() => mockRepository.getCatFact()).thenAnswer((invocation) async {
       await Future.delayed(const Duration(seconds: 2));
-      return CatFact(fact: 'mock test', length: 1);
+      return catFact;
     });
   }
 
@@ -40,8 +41,6 @@ void main() {
     (WidgetTester tester) async {
       arrangeRepositoryRequestFor2Seconds();
       await tester.pumpWidget(createWidgetUnderTest());
-      await tester.pump();
-
       await tester.tap(find.byIcon(Icons.search));
       await tester.pumpAndSettle();
       expect(find.text('mock test'), findsOneWidget);

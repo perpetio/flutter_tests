@@ -20,17 +20,28 @@ class MockRepository extends Mock implements CatfactRepository {}
 
 void main() {
   late MockRepository mockRepository;
+  late CatfactRepository repository;
   final CatFact catFact = CatFact(fact: 'mock test', length: 1);
   late HomeCubit cubit;
 
   setUp(() {
     mockRepository = MockRepository();
+    repository = CatfactRepository();
     cubit = HomeCubit(mockRepository);
   });
 
   void arrangeRepositoryReturnFact() {
     when(() => mockRepository.getCatFact()).thenAnswer((invocation) async => catFact);
   }
+
+  test(
+    "Test Http request",
+    () async {
+      HttpOverrides.global = null;
+      CatFact? catFact = await repository.getCatFact();
+      expect(catFact?.fact != null, true);
+    },
+  );
 
   group('Group testing example', () {
     test(
