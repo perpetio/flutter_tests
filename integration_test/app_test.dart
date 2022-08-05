@@ -5,8 +5,6 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tests/home/home_screen.dart';
@@ -14,39 +12,14 @@ import 'package:flutter_tests/models/cat_fact.dart';
 import 'package:flutter_tests/repositories/cat_fact_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
-class ManuallyMockRepository implements CatfactRepository {
-  @override
-  Future<CatFact?> getCatFact() async {
-    return CatFact(fact: 'test content', length: 1);
-  }
-}
-
 class MockRepository extends Mock implements CatfactRepository {}
 
 void main() {
-  late CatfactRepository repository;
   late MockRepository mockRepository;
-  late ManuallyMockRepository manuallyMockRepository;
 
   setUp(() {
-    repository = CatfactRepository();
     mockRepository = MockRepository();
-    manuallyMockRepository = ManuallyMockRepository();
   });
-
-  test('Test Http request', (() async {
-    HttpOverrides.global = null;
-    CatFact? catFact = await repository.getCatFact();
-    expect(catFact != null, true);
-  }));
-
-  test(
-    "manually repository testing",
-    () async {
-      CatFact? catFact = await manuallyMockRepository.getCatFact();
-      expect(catFact?.fact?.isNotEmpty, true);
-    },
-  );
 
   void arrangeRepositoryRequestFor2Seconds() {
     when(() => mockRepository.getCatFact()).thenAnswer((invocation) async {
