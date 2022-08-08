@@ -21,7 +21,7 @@ This project is created to show how to write different tests in flutter.
 
 [mocktail](https://pub.dev/packages/mocktail) - A Dart mock library which simplifies mocking with null safety support and no manual mocks or code generation.
 
-## Gettit started:
+## Getting started:
 1. Clone the repo.
 2. Open project in VSCode or Android studio.
 3. Run tests.
