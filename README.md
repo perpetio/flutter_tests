@@ -23,6 +23,9 @@ This project is created to show how to write different tests in flutter.
 
 ## Getting started:
 1. Clone the repo.
+```
+$ git clone https://github.com/perpetio/flutter_tests.git
+```
 2. Open project in VSCode or Android studio.
 3. Run tests.
 
