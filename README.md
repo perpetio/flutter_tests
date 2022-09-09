@@ -1,4 +1,4 @@
-# flutter_tests
+# Flutter Unit/Integration/Widget Testing
 
 This project is created to show how to write different tests in flutter.
 
