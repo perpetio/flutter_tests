@@ -6,7 +6,7 @@ This project is created to show how to write different tests in flutter.
 
 [How to Test a Flutter App: Unit, UI, Integration, and Bloc Tests](https://perpet.io/blog/how-to-test-a-flutter-app-unit-ui-integration-and-bloc-tests/)
 
-## Features incude:
+## Features incudes:
 * Unit tests
 * Widget tests
 * Cubit/Bloc tests
